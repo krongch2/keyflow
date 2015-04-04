@@ -28,13 +28,13 @@ TypingGame(){
     else {
         if (UserInput = "a"){
             exe_path := "C:\Program Files (x86)\Sublime Text 2\sublime_text.exe"
-            file_path := "D:\Projects\Typing_Game\ty.py"
+            file_path := "D:\Projects\typing_game\ty.py"
             RunWait %exe_path% %file_path%
             WinActivate, ahk_class PX_WINDOW_CLASS
             return
         }
-        path := "D:\Projects\Typing_Game\ex" UserInput ".txt"
-        Runwait, "c:\cygwin64\bin\bash.exe" -c "cd /cygdrive/d/Projects/Typing_Game/; python ty.py %UserInput%"
+        path := "D:\Projects\typing_game\ex" UserInput ".txt"
+        Runwait, "c:\cygwin64\bin\bash.exe" -c "cd /cygdrive/d/Projects/typing_game/; python ty.py %UserInput%"
         Sleep 100
         Loop {
             If FileExist(path) {
@@ -137,7 +137,7 @@ F1::
     WinActivate, ahk_class PX_WINDOW_CLASS
     return
 ^!l::
-    RunWait % "D:\Projects\LifeArchive\life.csv"
+    RunWait % "D:\Projects\life_archive\life.csv"
     WinActivate, ahk_class PX_WINDOW_CLASS
     return
 ^!s::
@@ -166,7 +166,7 @@ F1::
     WinActivate, ahk_class Chrome_WidgetWin_1
     return
 ^!u::
-    Run % "D:\Projects\Condensed Matter Research\Pseudopotentials\Putty\PuTTY_Golub.lnk"
+    Run % "D:\Projects\condensed_matter_research\software\Putty\PuTTY_Golub.lnk"
     return
     Sleep 1000
     WinActivate, ahk_class PuTTY
