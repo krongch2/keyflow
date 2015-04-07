@@ -349,14 +349,7 @@ $^v::
         Sleep 100
         WinActivate, ahk_class Progman
     }
-    ; TrayTip, % "Timed TrayTip", % "This will be displayed for 1 second."
-    ; SetTimer, RemoveTrayTip, 1000
     return
-
-    ; RemoveTrayTip:
-    ; SetTimer, RemoveTrayTip, Off
-    ; TrayTip
-    ; return
 
 >!j::Send {RWin down}{Left}{RWin up} ; To the Left
 >!l::Send {RWin down}{Right}{RWin up} ; To the Right
@@ -412,5 +405,3 @@ BackSpace::
 #IfWinActive ahk_class TMainForm
 -::Send {NumpadSub}
 =::Send {NumpadAdd}
-
-
