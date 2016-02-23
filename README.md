@@ -1,2 +1,2 @@
 # KeyFlow
-Increase productivity. Speed up your workflow.
+Increase efficiency. Speed up your workflow.
