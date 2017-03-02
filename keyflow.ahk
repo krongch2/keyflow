@@ -40,6 +40,7 @@ F4::Send {RButton}
     RunWait %exe_path% %file_path%
     WinActivate, ahk_class PX_WINDOW_CLASS
     return
+<!n::Runwait, %comspec% /k "py -3 D:\vocab\wall.py && exit"
 <!i::Send {Up}
 <!k::Send {Down}
 <!j::Send {Left}
@@ -102,6 +103,7 @@ $<!=::
 <!BackSpace::Send {Delete}
 <!a::Send {Ctrl down}{a}{Ctrl up}
 <!s::Send {Ctrl down}{s}{Ctrl up}
+<!z::Send {Ctrl down}{z}{Ctrl up}
 <!w::Send {RWin down}{e}{RWin up}
 <!e::ShiftAltTab
 <!tab::AltTab
