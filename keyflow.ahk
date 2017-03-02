@@ -1,13 +1,8 @@
 #SingleInstance Force
-; #InstallKeybdHook
-; #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.s
 SetWorkingDir %A_ScriptDir%
 SendMode Input
 #Include sf.ahk
 #Include trials.ahk
-
-!Backspace::Send {Browser_Back}
 
 <!4::Enter
 <!2::Send {WheelUp 2}
@@ -27,27 +22,6 @@ F3::
         return
     }
 F3 Up::Click up
-; ^F3::
-;     if WinActive("ahk_class Chrome_WidgetWin_1")
-;         Send {MButton}
-;     else
-;         Send {Ctrl down}{LButton}{Ctrl up}
-;     return
-; ^F3::
-;     if WinActive("ahk_class MainWindow") {  ; autoclick
-;         Loop {
-;             Send {MButton}
-;             if (GetKeyState("LButton", "P")=0)
-;                 break
-;             sleep 10
-;         }
-;     }
-;     else {
-;         if (GetKeyState("LButton" , "P")=0)
-;             Send {MButton down}
-;         return
-;     }
-; ^F3 Up::Send {MButton up}
 $^F3::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
         Send {MButton}
@@ -60,54 +34,10 @@ $^F3::
 F4::Send {RButton}
 +F10::Send {AppsKey}
 
-TypingGame(){
-    InputBox, UserInput, "Exercise Number", "Please enter an exercise number"
-    Sleep 100
-    if ErrorLevel
-        return
-    else {
-        if (UserInput = "a"){
-            exe_path := "C:\Program Files (x86)\Sublime Text 2\sublime_text.exe"
-            file_path := "D:\Projects\typing_game\ty.py"
-            RunWait %exe_path% %file_path%
-            WinActivate, ahk_class PX_WINDOW_CLASS
-            return
-        }
-        path := "D:\Projects\typing_game\ex" UserInput ".txt"
-        Runwait, "c:\cygwin64\bin\bash.exe" -c "cd /cygdrive/d/Projects/typing_game/; python ty.py %UserInput%"
-        Sleep 100
-        Loop {
-            If FileExist(path) {
-                MsgBox % "Ready!"
-                break
-            }
-            else
-                Sleep 100
-                MsgBox % "The exercise does not exist. Try again."
-                TypingGame()
-                return
-        }
-        FileRead, Clipboard, %path%
-        Sleep 100
-        Run % "http://www.typing-lessons.org/exercise_6.html"
-        Sleep 300
-        WinActivate, ahk_class Chrome_WidgetWin_1
-        return
-    }
-}
-<!n::TypingGame()
 ^!a::
-    exe_path := "C:\Program Files\Sublime Text 3\sublime_text.exe"
+    exe_path := "C:\Program Files (x86)\Sublime Text 3\sublime_text.exe"
     file_path := "./keyflow.ahk"
     RunWait %exe_path% %file_path%
-    WinActivate, ahk_class PX_WINDOW_CLASS
-    return
-^!v::
-    RunWait % "D:\Projects\vocab.txt"
-    WinActivate, ahk_class Notepad
-    return
-^!d::
-    RunWait % "D:\Projects\debts.py"
     WinActivate, ahk_class PX_WINDOW_CLASS
     return
 <!i::Send {Up}
@@ -118,8 +48,8 @@ TypingGame(){
 <!;::Send {End}
 <!u::Send {Ctrl down}{Left}{Ctrl up}
 <!o::Send {Ctrl down}{Right}{Ctrl up}
-<!y::Send {Up 10}
-<!p::Send {Down 10}
+<!y::Send {Up 7}
+<!p::Send {Down 7}
 <!8::Send {PgUp}
 <!9::Send {PgDn}
 <!<+i::Send {Shift down}{Up}{Shift up}
@@ -134,15 +64,7 @@ TypingGame(){
 <!<+p::Send {Shift down}{Down 10}{Shift up}
 <!<+8::Send {Shift down}{PgUp}{Shift up}
 <!<+9::Send {Shift down}{PgDn}{Shift up}
-<^i::
-    if WinActive("ahk_class iTunes"){
-        Send {Up}
-        return
-    }
-    else {
-        Send {Ctrl down}{Up}{Ctrl up}
-        return
-    }
+<^i::Send {Ctrl down}{Up}{Ctrl up}
 <^j::Send {Ctrl down}{Left}{Ctrl up}
 <^k::Send {Ctrl down}{Down}{Ctrl up}
 <^l::Send {Ctrl down}{Right}{Ctrl up}
@@ -150,8 +72,6 @@ TypingGame(){
 <^;::Send {Ctrl down}{End}{Ctrl up}
 <^y::Send {Ctrl down}{Up 10}{Ctrl up}
 <^p::Send {Ctrl down}{Down 10}{Ctrl up}
-<^8::Send {WheelUp 2}
-<^9::Send {WheelDown 2}
 <!-::
     IfWinActive ahk_class CabinetWClass
         Send {Ctrl down}{WheelDown}{Ctrl up}
@@ -180,12 +100,8 @@ $<!=::
 <!.::Send {Volume_up 1}
 <!m::Send {Volume_mute}
 <!BackSpace::Send {Delete}
-; <!<+BackSpace::Send {Shift down}{Delete}{Shift up}
 <!a::Send {Ctrl down}{a}{Ctrl up}
 <!s::Send {Ctrl down}{s}{Ctrl up}
-<!z::Send {Ctrl down}{z}{Ctrl up}
-<!x::Send {Ctrl down}{x}{Ctrl up}
-<!c::Send {Ctrl down}{c}{Ctrl up}
 <!w::Send {RWin down}{e}{RWin up}
 <!e::ShiftAltTab
 <!tab::AltTab
@@ -207,29 +123,7 @@ $^v::
     return
 
 #e::#Up
-
-; Minimize
-; #d::
-;     if WinActive("ahk_class WorkerW")
-;     {
-;         WinActivate, ahk_class WorkerW
-;         Sleep 100
-;         WinActivate, ahk_class Progman
-;     }
-;     else {
-;         Send {RWin down}{d}{RWin up}
-;         WinActivate, ahk_class WorkerW
-;         Sleep 100
-;         WinActivate, ahk_class Progman
-;     }
-;     return
-
-; To the Left
-; #s::Send {RWin down}{Left}{RWin up}
 #s::#Left
-
-; To the Right
-; #f::Send {RWin down}{Right}{RWin up}
 #f::#Right
 
 ^e::Send {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
@@ -286,9 +180,6 @@ i::Up
 j::Left
 k::Down
 l::Right
-
-u::Left
-o::Right
 
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
 i::Up
