@@ -61,8 +61,8 @@ F4::Send {RButton}
 <!<+;::Send {Shift down}{End}{Shift up}
 <!<+u::Send {Ctrl down}{Shift down}{left}{Ctrl up}{Shift up}
 <!<+o::Send {Ctrl down}{Shift down}{right}{Ctrl up}{Shift up}
-<!<+y::Send {Shift down}{Up 10}{Shift up}
-<!<+p::Send {Shift down}{Down 10}{Shift up}
+<!<+y::Send {Shift down}{Up 7}{Shift up}
+<!<+p::Send {Shift down}{Down 7}{Shift up}
 <!<+8::Send {Shift down}{PgUp}{Shift up}
 <!<+9::Send {Shift down}{PgDn}{Shift up}
 <^i::Send {Ctrl down}{Up}{Ctrl up}
@@ -71,8 +71,8 @@ F4::Send {RButton}
 <^l::Send {Ctrl down}{Right}{Ctrl up}
 <^h::Send {Ctrl down}{Home}{Ctrl up}
 <^;::Send {Ctrl down}{End}{Ctrl up}
-<^y::Send {Ctrl down}{Up 10}{Ctrl up}
-<^p::Send {Ctrl down}{Down 10}{Ctrl up}
+<^y::Send {Ctrl down}{Up 7}{Ctrl up}
+<^p::Send {Ctrl down}{Down 7}{Ctrl up}
 <!-::
     IfWinActive ahk_class CabinetWClass
         Send {Ctrl down}{WheelDown}{Ctrl up}
@@ -115,7 +115,10 @@ $^v::
     else
         Send ^v
     return
-<![::Send {´}
+<![::
+    clipboard := "``"
+    Send ^v
+    return
 <!]::
     clipboard := "~"
     if WinActive("ahk_class PuTTY")
@@ -139,6 +142,10 @@ $^v::
         Send {Ctrl down}{c}{Ctrl up}
         Sleep 100
         Send {Ctrl down}{t}{v}{Ctrl up}{Enter}
+        return
+    }
+    if WinActive("ahk_class MediaPlayerClassicW") {
+        Send ^g
         return
     }
     else {
