@@ -7,6 +7,8 @@ SendMode Input
 <!4::Enter
 <!2::Send {WheelUp 2}
 <!3::Send {WheelDown 2}
+<^8::Send {WheelUp 2}
+<^9::Send {WheelDown 2}
 F3::
     if WinActive("ahk_class MainWindow") {  ; autoclick
         Loop {
@@ -184,6 +186,12 @@ f::Send {Alt}{n}{c}{c}{c}{Enter}
 m::F1
 .::F3
 
+#IfWinActive ahk_class ScimitarEngineWindowClass ; ac2
+>!i::Up
+>!j::Left
+>!k::Down
+>!l::Right
+
 #IfWinActive ahk_class CastleWnd ; Castle Crashers
 i::Up
 j::Left
@@ -191,14 +199,26 @@ k::Down
 l::Right
 
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
+$LWin::return
 i::Up
 j::Left
 k::Down
 l::Right
 space::Up
 backspace::Space
-g::c
-b::r
+n::
+Send {Right down}
+Sleep % delay
+Send {Down down}
+Sleep % delay
+Send {Right up}{Down up}
+Sleep % delay
+Send {Right down}{Down down}
+Sleep % delay
+Send {s down}
+Sleep % delay
+Send {Right up}{Down up}{s up}
+return
 ; -::
 ; eryu_t24()
 ; return
@@ -207,49 +227,51 @@ b::r
 ; spam()
 ; return
 
-7::
-circle()
-normals("f", 0)
-return
 
-8::
-circle()
-normals("s", 0)
-return
 
-9::
-Send {Left down}
-Sleep % delay
-Send {Left up}{Down down}
-Sleep % delay
-Send {Down up}{Right down}
-Sleep % delay
-Send {Right up}{Up down}
-Sleep % delay
-Send {Up up}{Left down}
-Sleep % delay
-Send {Left up}{Down down}
-Sleep % delay
-Send {Down up}{Right down}{s down}
-Sleep % delay
-Send {Right up}{s up}
-return
+; 7::
+; circle()
+; normals("f", 0)
+; return
 
-0::
-Send {Left down}
-Sleep % delay
-Send {Left up}{Down down}
-Sleep % delay
-Send {Down up}{Right down}
-Sleep % delay
-Send {Right up}{Up down}
-Sleep % delay
-Send {Up up}{Left down}
-Sleep % delay
-Send {Left up}{Down down}
-Sleep % delay
-Send {Down up}{Right down}{a down}
-Sleep % delay
-Send {Right up}{a up}
-return
+; 8::
+; circle()
+; ; normals("s", 0)
+; return
+
+; 9::
+; Send {Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}
+; Sleep % delay
+; Send {Right up}{Up down}
+; Sleep % delay
+; Send {Up up}{Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}{s down}
+; Sleep % delay
+; Send {Right up}{s up}
+; return
+
+; 0::
+; Send {Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}
+; Sleep % delay
+; Send {Right up}{Up down}
+; Sleep % delay
+; Send {Up up}{Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}{a down}
+; Sleep % delay
+; Send {Right up}{a up}
+; return
 
