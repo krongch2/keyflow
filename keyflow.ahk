@@ -35,9 +35,8 @@ $^F3::
     }
 F4::Send {RButton}
 +F10::Send {AppsKey}
-
 ^!a::
-    exe_path := "C:\Program Files (x86)\Sublime Text 3\sublime_text.exe"
+    exe_path := "C:\Program Files\Sublime Text 3\sublime_text.exe"
     file_path := "./keyflow.ahk"
     RunWait %exe_path% %file_path%
     WinActivate, ahk_class PX_WINDOW_CLASS
@@ -186,12 +185,6 @@ f::Send {Alt}{n}{c}{c}{c}{Enter}
 m::F1
 .::F3
 
-#IfWinActive ahk_class ScimitarEngineWindowClass ; ac2
->!i::Up
->!j::Left
->!k::Down
->!l::Right
-
 #IfWinActive ahk_class CastleWnd ; Castle Crashers
 i::Up
 j::Left
@@ -206,72 +199,3 @@ k::Down
 l::Right
 space::Up
 backspace::Space
-n::
-Send {Right down}
-Sleep % delay
-Send {Down down}
-Sleep % delay
-Send {Right up}{Down up}
-Sleep % delay
-Send {Right down}{Down down}
-Sleep % delay
-Send {s down}
-Sleep % delay
-Send {Right up}{Down up}{s up}
-return
-; -::
-; eryu_t24()
-; return
-
-; y::
-; spam()
-; return
-
-
-
-; 7::
-; circle()
-; normals("f", 0)
-; return
-
-; 8::
-; circle()
-; ; normals("s", 0)
-; return
-
-; 9::
-; Send {Left down}
-; Sleep % delay
-; Send {Left up}{Down down}
-; Sleep % delay
-; Send {Down up}{Right down}
-; Sleep % delay
-; Send {Right up}{Up down}
-; Sleep % delay
-; Send {Up up}{Left down}
-; Sleep % delay
-; Send {Left up}{Down down}
-; Sleep % delay
-; Send {Down up}{Right down}{s down}
-; Sleep % delay
-; Send {Right up}{s up}
-; return
-
-; 0::
-; Send {Left down}
-; Sleep % delay
-; Send {Left up}{Down down}
-; Sleep % delay
-; Send {Down up}{Right down}
-; Sleep % delay
-; Send {Right up}{Up down}
-; Sleep % delay
-; Send {Up up}{Left down}
-; Sleep % delay
-; Send {Left up}{Down down}
-; Sleep % delay
-; Send {Down up}{Right down}{a down}
-; Sleep % delay
-; Send {Right up}{a up}
-; return
-

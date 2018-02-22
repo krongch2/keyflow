@@ -99,3 +99,60 @@ spam() {
     Send {d up}
     return
 }
+
+; -::
+; eryu_t24()
+; return
+
+; y::
+; spam()
+; return
+
+
+
+; 7::
+; circle()
+; normals("f", 0)
+; return
+
+; 8::
+; circle()
+; ; normals("s", 0)
+; return
+
+; 9::
+; Send {Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}
+; Sleep % delay
+; Send {Right up}{Up down}
+; Sleep % delay
+; Send {Up up}{Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}{s down}
+; Sleep % delay
+; Send {Right up}{s up}
+; return
+
+; 0::
+; Send {Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}
+; Sleep % delay
+; Send {Right up}{Up down}
+; Sleep % delay
+; Send {Up up}{Left down}
+; Sleep % delay
+; Send {Left up}{Down down}
+; Sleep % delay
+; Send {Down up}{Right down}{a down}
+; Sleep % delay
+; Send {Right up}{a up}
+; return
+
