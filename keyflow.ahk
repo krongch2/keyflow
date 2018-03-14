@@ -24,6 +24,7 @@ F3::
         return
     }
 F3 Up::Click up
+$!F3::Send {Alt down}{LButton}{Alt up}
 $^F3::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
         Send {MButton}
@@ -109,7 +110,7 @@ $<!=::
 <!e::ShiftAltTab
 <!tab::AltTab
 $^v::
-    if WinActive("ahk_class PuTTY") or WinActive("ahk_class ConsoleWindowClass"){
+    if WinActive("ahk_class PuTTY") or WinActive("ahk_class ConsoleWindowClass") or WinActive("ahk_class mintty"){
         StringReplace clipboard2, clipboard, \r\n, \n, All
         SendInput {Raw}%clipboard2%
     }
@@ -123,6 +124,8 @@ $^v::
 <!]::
     clipboard := "~"
     if WinActive("ahk_class PuTTY")
+        Send {Shift down}{Insert}{Shift up}
+    if WinActive("ahk_class mintty")
         Send {Shift down}{Insert}{Shift up}
     else
         Send ^v
