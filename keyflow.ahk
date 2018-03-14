@@ -119,7 +119,12 @@ $^v::
     return
 <![::
     clipboard := "``"
-    Send ^v
+    if WinActive("ahk_class PuTTY")
+        Send {Shift down}{Insert}{Shift up}
+    if WinActive("ahk_class mintty")
+        Send {Shift down}{Insert}{Shift up}
+    else
+        Send ^v
     return
 <!]::
     clipboard := "~"
