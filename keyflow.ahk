@@ -119,42 +119,32 @@ $^v::
     return
 <![::
     clipboard := "``"
-    if WinActive("ahk_class PuTTY")
-        Send {Shift down}{Insert}{Shift up}
-    if WinActive("ahk_class mintty")
+    if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty")
         Send {Shift down}{Insert}{Shift up}
     else
         Send ^v
     return
 <!]::
     clipboard := "~"
-    if WinActive("ahk_class PuTTY")
-        Send {Shift down}{Insert}{Shift up}
-    if WinActive("ahk_class mintty")
+    if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty")
         Send {Shift down}{Insert}{Shift up}
     else
         Send ^v
     return
-
 #e::#Up
 #s::#Left
 #f::#Right
-
 ^e::Send {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
 ^g::
-    if WinActive("ahk_class PX_WINDOW_CLASS") {
+    if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class MediaPlayerClassicW"){
         Send ^g
         return
     }
-    if (WinActive("ahk_class Chrome_WidgetWin_1") || WinActive("ahk_class MozillaWindowClass")){
+    if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class MozillaWindowClass"){
         Sleep 100
         Send {Ctrl down}{c}{Ctrl up}
         Sleep 100
         Send {Ctrl down}{t}{v}{Ctrl up}{Enter}
-        return
-    }
-    if WinActive("ahk_class MediaPlayerClassicW") {
-        Send ^g
         return
     }
     else {
@@ -205,5 +195,7 @@ i::Up
 j::Left
 k::Down
 l::Right
+h::LShift
+CapsLock::v
 space::Up
 backspace::Space
