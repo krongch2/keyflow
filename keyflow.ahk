@@ -196,6 +196,8 @@ j::Left
 k::Down
 l::Right
 h::LShift
+Numpad9::o
+Numpad7::u
 CapsLock::v
 space::Up
 backspace::Space
