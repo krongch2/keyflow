@@ -1,9 +1,57 @@
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
 SendMode Input
-#Include sf.ahk
-#Include trials.ahk
 
+
+#IfWinActive ahk_class CabinetWClass ; Windows Explorer
+BackSpace::
+    ControlGet renamestatus, Visible, , Edit1, A
+    ControlGetFocus focussed, A
+    if (renamestatus != 1 && (focussed = "DirectUIHWND3" || focussed = "SysTreeView321"))
+        SendInput {Alt Down}{Up}{Alt Up}
+    else
+        Send {BackSpace}
+    return
+
+#IfWinActive ahk_class wxWindowClassNR ; Audacity
+!8::Send {PgDn}
+!9::Send {PgUp}
+^!t::Send {F10}{c}{Down 6}{Enter}
+
+#IfWinActive ahk_class TMainForm ; Guitar Pro
+-::Send {NumpadSub}
+=::Send {NumpadAdd}
+e::Send {Insert}
+/::Send {NumpadDiv}
+*::Send {NumpadMult}
++::Send {Shift down}{NumpadAdd}{Shift up}
+_::Send {Shift down}{NumpadSub}{Shift up}
+f::Send {Alt}{n}{c}{c}{c}{Enter}
+
+#IfWinActive ahk_class EPSX
+m::F1
+.::F3
+
+#IfWinActive ahk_class CastleWnd ; Castle Crashers
+i::Up
+j::Left
+k::Down
+l::Right
+
+#IfWinActive ahk_class SSFIVAE ; Street Fighter IV
+$LWin::return
+$RWin::return
+i::Up
+j::Left
+k::Down
+l::Right
+space::Up
+backspace::Space
+Numpad9::o
+Numpad7::u
+CapsLock::v
+
+#IfWinActive
 <!4::Enter
 <!2::Send {WheelUp 2}
 <!3::Send {WheelDown 2}
@@ -153,51 +201,3 @@ $^v::
         Run % "http://www.google.com/search?q=%clipboard%"
         Return
     }
-
-#IfWinActive ahk_class CabinetWClass ; Windows Explorer
-BackSpace::
-    ControlGet renamestatus, Visible, , Edit1, A
-    ControlGetFocus focussed, A
-    if (renamestatus != 1 && (focussed = "DirectUIHWND3" || focussed = "SysTreeView321"))
-        SendInput {Alt Down}{Up}{Alt Up}
-    else
-        Send {BackSpace}
-    return
-
-#IfWinActive ahk_class wxWindowClassNR ; Audacity
-!8::Send {PgDn}
-!9::Send {PgUp}
-^!t::Send {F10}{c}{Down 6}{Enter}
-
-#IfWinActive ahk_class TMainForm ; Guitar Pro
--::Send {NumpadSub}
-=::Send {NumpadAdd}
-e::Send {Insert}
-/::Send {NumpadDiv}
-*::Send {NumpadMult}
-+::Send {Shift down}{NumpadAdd}{Shift up}
-_::Send {Shift down}{NumpadSub}{Shift up}
-f::Send {Alt}{n}{c}{c}{c}{Enter}
-
-#IfWinActive ahk_class EPSX
-m::F1
-.::F3
-
-#IfWinActive ahk_class CastleWnd ; Castle Crashers
-i::Up
-j::Left
-k::Down
-l::Right
-
-#IfWinActive ahk_class SSFIVAE ; Street Fighter IV
-$LWin::return
-i::Up
-j::Left
-k::Down
-l::Right
-h::LShift
-Numpad9::o
-Numpad7::u
-CapsLock::v
-space::Up
-backspace::Space
