@@ -2,7 +2,6 @@
 SetWorkingDir %A_ScriptDir%
 SendMode Input
 
-
 #IfWinActive ahk_class CabinetWClass ; Windows Explorer
 BackSpace::
     ControlGet renamestatus, Visible, , Edit1, A
@@ -13,39 +12,12 @@ BackSpace::
         Send {BackSpace}
     return
 
-#IfWinActive ahk_class wxWindowClassNR ; Audacity
-!8::Send {PgDn}
-!9::Send {PgUp}
-^!t::Send {F10}{c}{Down 6}{Enter}
-
-#IfWinActive ahk_class TMainForm ; Guitar Pro
--::Send {NumpadSub}
-=::Send {NumpadAdd}
-e::Send {Insert}
-/::Send {NumpadDiv}
-*::Send {NumpadMult}
-+::Send {Shift down}{NumpadAdd}{Shift up}
-_::Send {Shift down}{NumpadSub}{Shift up}
-f::Send {Alt}{n}{c}{c}{c}{Enter}
-
-#IfWinActive ahk_class EPSX
-m::F1
-.::F3
-
-#IfWinActive ahk_class CastleWnd ; Castle Crashers
-i::Up
-j::Left
-k::Down
-l::Right
-
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
 $LWin::return
 $RWin::return
-i::Up
-j::Left
-k::Down
-l::Right
-space::Up
+h::Up
+`;::Down
+space::i
 backspace::Space
 Numpad9::o
 Numpad7::u
@@ -182,7 +154,14 @@ $^v::
 #e::#Up
 #s::#Left
 #f::#Right
-^e::Send {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
+^e::
+    if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class Chrome_WidgetWin_1") {
+        Send {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
+        return
+    }
+    else {
+        return
+    }
 ^g::
     if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class MediaPlayerClassicW"){
         Send ^g
