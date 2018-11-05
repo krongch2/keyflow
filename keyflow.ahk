@@ -12,16 +12,52 @@ BackSpace::
         Send {BackSpace}
     return
 
+#IfWinActive ahk_class CastleWnd ; Castle Crashers
+i::Up
+j::Left
+k::Down
+l::Right
+
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
 $LWin::return
 $RWin::return
-h::Up
+h::up
 `;::Down
 space::i
-backspace::Space
+BackSpace::Space
 Numpad9::o
 Numpad7::u
 CapsLock::v
+
+#IfWinActive ahk_class UnityWndClass ; Duel Links
+~Space & j::MouseClick, left, 570, 540
+~Space & l::MouseClick, left, 1350, 540
+^f::
+Click, left, 1800, 230
+Click, up
+Sleep 300
+Click, left, 900, 515
+Click, up
+return
+^f up::Click up
+!j::MouseClick, left, 570, 540
+!l::MouseClick, left, 1350, 540
+Enter::
+Loop {
+    MouseClick, left, 960, 1020
+    if (GetKeyState("LButton", "P")=0)
+        break
+    sleep 10
+}
+return
+`;::
+if (GetKeyState("LButton" , "P")=0)
+    Click down
+return
+`; Up::Click up
+=::Escape
+8::Send {WheelUp 2}
+9::Send {WheelDown 2}
 
 #IfWinActive
 <!4::Enter
