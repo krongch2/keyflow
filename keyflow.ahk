@@ -1,6 +1,10 @@
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
-SendMode Input
+; SendMode Input
+
+#Include sf/sf.ahk
+
+; SetTitleMatchMode, 2
 
 #IfWinActive ahk_class CabinetWClass ; Windows Explorer
 BackSpace::
@@ -12,6 +16,40 @@ BackSpace::
         Send {BackSpace}
     return
 
+#IfWinActive ahk_class DEFAULT CLASS ; ff7
+y::
+Loop {
+if (BreakLoop = 1)
+    break
+Send {c down}
+Sleep 440
+Send {c up}
+Sleep 1500
+}
+BreakLoop := 0
+return
+
+,::
+Loop {
+if (BreakLoop2 = 1)
+    break
+Send {c down}
+Sleep 100
+Send {c up}
+Sleep 220
+Send {x down}
+Sleep 100
+Send {x up}
+Sleep 220
+}
+BreakLoop2 := 0
+return
+
+.::
+BreakLoop2 := 1
+BreakLoop := 1
+return
+
 #IfWinActive ahk_class CastleWnd ; Castle Crashers
 i::Up
 j::Left
@@ -20,18 +58,74 @@ l::Right
 
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
 $LWin::return
-$RWin::return
-h::up
-`;::Down
+; $RWin::return
+8::up
+9::Down
 space::i
 BackSpace::Space
 Numpad9::o
 Numpad7::u
-CapsLock::v
+CapsLock::return
+; t::yang_trial_21()
+return
+
+#IfWinActive ahk_class DEFAULT CLASS ; ff7
+m::c
+space::x
+rshift::x
+`;::x
+
+#IfWinActive ahk_exe eldenring.exe
+WheelUp::Return
+WheelDown::Return
+`;::
+if (GetKeyState("LButton" , "P")=0)
+    Click down
+return
+`; Up::Click up
+,::LShift
+; g::b
 
 #IfWinActive ahk_class UnityWndClass ; Duel Links
-~Space & j::MouseClick, left, 570, 540
-~Space & l::MouseClick, left, 1350, 540
+; ~Space & j::MouseClick, left, 570, 540
+; ~Space & l::MouseClick, left, 1350, 540
+; k::MouseMove, 500, 0, 50, R
+; k::MsgBox, "test"
+; l::MouseMove, 500, 0, 100, R
+; l::SendEvent {Click 100 200}
+; l::SendEvent {Click 300, 0, 0, Relative}
+$LWin::return
+$LCtrl::return
+F5::u
+F6::
+if (GetKeyState("LButton" , "P")=0)
+    Click down right
+return
+F6 Up::Click up right
+F7::o
+F8::
+if (GetKeyState("LButton" , "P")=0)
+    Click down
+return
+F8 Up::Click up
+
+Tab::
+if (GetKeyState("LButton" , "P")=0)
+    Click down
+return
+Tab Up::Click up
+
+
+^i::Send {WheelUp 2}
+^k::Send {WheelDown 2}
+RShift::LShift
+; '::LShift
+,::LShift
+6::
+    if (GetKeyState("LButton" , "P")=0)
+        Send {Mbutton down}
+    return
+6 up::Send {Mbutton up}
 ^f::
 Click, left, 1800, 230
 Click, up
@@ -40,32 +134,41 @@ Click, left, 900, 515
 Click, up
 return
 ^f up::Click up
-!j::MouseClick, left, 570, 540
-!l::MouseClick, left, 1350, 540
-Enter::
-Loop {
-    MouseClick, left, 960, 1020
-    if (GetKeyState("LButton", "P")=0)
-        break
-    sleep 10
-}
-return
+; !j::MouseClick, left, 570, 540
+; !l::MouseClick, left, 1350, 540
+; Enter::
+; Loop {
+;     MouseClick, left, 960, 1020
+;     if (GetKeyState("LButton", "P")=0)
+;         break
+;     sleep 10
+; }
+; return
 `;::
 if (GetKeyState("LButton" , "P")=0)
     Click down
 return
 `; Up::Click up
-=::Escape
-8::Send {WheelUp 2}
-9::Send {WheelDown 2}
+
+; a::
+; if (GetKeyState("LButton" , "P")=0)
+;     Click down
+; return
+; a Up::Click up
+; =::Escape
+
 
 #IfWinActive
-<!4::Enter
-<!2::Send {WheelUp 2}
-<!3::Send {WheelDown 2}
-<^8::Send {WheelUp 2}
-<^9::Send {WheelDown 2}
-F3::
+; \::MouseMove, 500, 500, 100
+; !l::SendEvent {RClick 1000 500 Down}{RClick 1500 500 Up}
+; !l::MouseClickDrag, right, 1000, 500, 1500, 500
+; l::SendEvent {Click 300, 0, 0, Relative}
+; <!4::Enter
+; <!2::Send {WheelUp 2}
+; <!3::Send {WheelDown 2}
+; <^8::Send {WheelUp 2}
+; <^9::Send {WheelDown 2}
+F2::
     if WinActive("ahk_class MainWindow") {  ; autoclick
         Loop {
             Click
@@ -79,9 +182,9 @@ F3::
             Click down
         return
     }
-F3 Up::Click up
-$!F3::Send {Alt down}{LButton}{Alt up}
-$^F3::
+F2 Up::Click up
+$!F2::Send {Alt down}{LButton}{Alt up}
+$^F2::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
         Send {MButton}
         return
@@ -98,7 +201,7 @@ F4::Send {RButton}
     RunWait %exe_path% %file_path%
     WinActivate, ahk_class PX_WINDOW_CLASS
     return
-<!n::Runwait, %comspec% /k "py -3 D:\vocab\wall.py && exit"
+; <!n::Runwait, %comspec% /k "py -3 D:\vocab\wall.py && exit"
 <!i::Send {Up}
 <!k::Send {Down}
 <!j::Send {Left}
@@ -107,6 +210,8 @@ F4::Send {RButton}
 <!;::Send {End}
 <!u::Send {Ctrl down}{Left}{Ctrl up}
 <!o::Send {Ctrl down}{Right}{Ctrl up}
+; <!u::Send {Left 7}
+; <!o::Send {Right 7}
 <!y::Send {Up 7}
 <!p::Send {Down 7}
 <!8::Send {PgUp}
@@ -119,6 +224,8 @@ F4::Send {RButton}
 <!<+;::Send {Shift down}{End}{Shift up}
 <!<+u::Send {Ctrl down}{Shift down}{left}{Ctrl up}{Shift up}
 <!<+o::Send {Ctrl down}{Shift down}{right}{Ctrl up}{Shift up}
+; <!<+u::Send {Shift down}{Left 7}{Shift up}
+; <!<+o::Send {Shift down}{Right 7}{Shift up}
 <!<+y::Send {Shift down}{Up 7}{Shift up}
 <!<+p::Send {Shift down}{Down 7}{Shift up}
 <!<+8::Send {Shift down}{PgUp}{Shift up}
@@ -129,8 +236,8 @@ F4::Send {RButton}
 <^l::Send {Ctrl down}{Right}{Ctrl up}
 <^h::Send {Ctrl down}{Home}{Ctrl up}
 <^;::Send {Ctrl down}{End}{Ctrl up}
-<^y::Send {Ctrl down}{Up 7}{Ctrl up}
-<^p::Send {Ctrl down}{Down 7}{Ctrl up}
+; <^y::Send {Ctrl down}{Up 7}{Ctrl up}
+; <^p::Send {Ctrl down}{Down 7}{Ctrl up}
 <!-::
     IfWinActive ahk_class CabinetWClass
         Send {Ctrl down}{WheelDown}{Ctrl up}
@@ -165,54 +272,58 @@ $<!=::
 <!w::Send {RWin down}{e}{RWin up}
 <!e::ShiftAltTab
 <!tab::AltTab
-$^v::
-    if WinActive("ahk_class PuTTY") or WinActive("ahk_class ConsoleWindowClass") or WinActive("ahk_class mintty"){
-        StringReplace clipboard2, clipboard, \r\n, \n, All
-        SendInput {Raw}%clipboard2%
-    }
-    else
-        Send ^v
-    return
-<![::
-    clipboard := "``"
-    if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty")
-        Send {Shift down}{Insert}{Shift up}
-    else
-        Send ^v
-    return
-<!]::
-    clipboard := "~"
-    if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty")
-        Send {Shift down}{Insert}{Shift up}
-    else
-        Send ^v
-    return
-#e::#Up
-#s::#Left
-#f::#Right
+; $^v::
+;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class ConsoleWindowClass") or WinActive("ahk_class mintty"){
+;         StringReplace clipboard2, clipboard, \r\n, \n, All
+;         SendInput {Raw}%clipboard2%
+;     }
+;     else
+;         Send ^v
+;     return
+; <![::
+;     clipboard := "``"
+;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty") or WinActive("ahk_class ConsoleWindowClass")
+;         Send {Shift down}{Insert}{Shift up}
+;     else
+;         Send ^v
+;     return
+; <!]::
+;     clipboard := "~"
+;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty") or WinActive("ahk_class ConsoleWindowClass")
+;         Send {Shift down}{Insert}{Shift up}
+;     else
+;         Send ^v
+;     return
+
+#i::#Up
+#j::#Left
+#l::#Right
+#k::#d
+
 ^e::
-    if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class Chrome_WidgetWin_1") {
+    if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Qt5QWindowIcon") {
         Send {Ctrl down}{Shift down}{Tab}{Shift up}{Ctrl up}
         return
     }
     else {
         return
     }
-^g::
-    if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class MediaPlayerClassicW"){
-        Send ^g
-        return
-    }
-    if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class MozillaWindowClass"){
-        Sleep 100
-        Send {Ctrl down}{c}{Ctrl up}
-        Sleep 100
-        Send {Ctrl down}{t}{v}{Ctrl up}{Enter}
-        return
-    }
-    else {
-        Send ^c
-        Sleep 100
-        Run % "http://www.google.com/search?q=%clipboard%"
-        Return
-    }
+; ^g::
+;     if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class MediaPlayerClassicW"){
+;         Send ^g
+;         return
+;     }
+;     if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class MozillaWindowClass"){
+;         Sleep 100
+;         Send {Ctrl down}{c}{Ctrl up}
+;         Sleep 100
+;         Send {Ctrl down}{t}{v}{Ctrl up}{Enter}
+;         return
+;     }
+;     else {
+;         Send ^c
+;         Sleep 100
+;         Run % "http://www.google.com/search?q=%clipboard%"
+;         Return
+;     }
+*capslock::return
