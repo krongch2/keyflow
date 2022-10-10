@@ -2,7 +2,7 @@
 SetWorkingDir %A_ScriptDir%
 ; SendMode Input
 
-#Include sf/sf.ahk
+; #Include sf/sf.ahk
 
 ; SetTitleMatchMode, 2
 
@@ -16,45 +16,6 @@ BackSpace::
         Send {BackSpace}
     return
 
-#IfWinActive ahk_class DEFAULT CLASS ; ff7
-y::
-Loop {
-if (BreakLoop = 1)
-    break
-Send {c down}
-Sleep 440
-Send {c up}
-Sleep 1500
-}
-BreakLoop := 0
-return
-
-,::
-Loop {
-if (BreakLoop2 = 1)
-    break
-Send {c down}
-Sleep 100
-Send {c up}
-Sleep 220
-Send {x down}
-Sleep 100
-Send {x up}
-Sleep 220
-}
-BreakLoop2 := 0
-return
-
-.::
-BreakLoop2 := 1
-BreakLoop := 1
-return
-
-#IfWinActive ahk_class CastleWnd ; Castle Crashers
-i::Up
-j::Left
-k::Down
-l::Right
 
 #IfWinActive ahk_class SSFIVAE ; Street Fighter IV
 $LWin::return
@@ -69,11 +30,6 @@ CapsLock::return
 ; t::yang_trial_21()
 return
 
-#IfWinActive ahk_class DEFAULT CLASS ; ff7
-m::c
-space::x
-rshift::x
-`;::x
 
 #IfWinActive ahk_exe eldenring.exe
 WheelUp::Return
@@ -272,28 +228,6 @@ $<!=::
 <!w::Send {RWin down}{e}{RWin up}
 <!e::ShiftAltTab
 <!tab::AltTab
-; $^v::
-;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class ConsoleWindowClass") or WinActive("ahk_class mintty"){
-;         StringReplace clipboard2, clipboard, \r\n, \n, All
-;         SendInput {Raw}%clipboard2%
-;     }
-;     else
-;         Send ^v
-;     return
-; <![::
-;     clipboard := "``"
-;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty") or WinActive("ahk_class ConsoleWindowClass")
-;         Send {Shift down}{Insert}{Shift up}
-;     else
-;         Send ^v
-;     return
-; <!]::
-;     clipboard := "~"
-;     if WinActive("ahk_class PuTTY") or WinActive("ahk_class mintty") or WinActive("ahk_class ConsoleWindowClass")
-;         Send {Shift down}{Insert}{Shift up}
-;     else
-;         Send ^v
-;     return
 
 #i::#Up
 #j::#Left
@@ -308,22 +242,5 @@ $<!=::
     else {
         return
     }
-; ^g::
-;     if WinActive("ahk_class PX_WINDOW_CLASS") or WinActive("ahk_class MediaPlayerClassicW"){
-;         Send ^g
-;         return
-;     }
-;     if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class MozillaWindowClass"){
-;         Sleep 100
-;         Send {Ctrl down}{c}{Ctrl up}
-;         Sleep 100
-;         Send {Ctrl down}{t}{v}{Ctrl up}{Enter}
-;         return
-;     }
-;     else {
-;         Send ^c
-;         Sleep 100
-;         Run % "http://www.google.com/search?q=%clipboard%"
-;         Return
-;     }
+
 *capslock::return
