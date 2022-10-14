@@ -124,7 +124,7 @@ return
 ; <!3::Send {WheelDown 2}
 ; <^8::Send {WheelUp 2}
 ; <^9::Send {WheelDown 2}
-F2::
+F3::
     if WinActive("ahk_class MainWindow") {  ; autoclick
         Loop {
             Click
@@ -138,7 +138,7 @@ F2::
             Click down
         return
     }
-F2 Up::Click up
+F3 Up::Click up
 $!F2::Send {Alt down}{LButton}{Alt up}
 $^F2::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
