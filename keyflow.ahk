@@ -71,12 +71,9 @@ if (GetKeyState("LButton" , "P")=0)
 return
 Tab Up::Click up
 
-
 ^i::Send {WheelUp 2}
 ^k::Send {WheelDown 2}
 RShift::LShift
-; '::LShift
-,::LShift
 6::
     if (GetKeyState("LButton" , "P")=0)
         Send {Mbutton down}
@@ -139,8 +136,8 @@ F3::
         return
     }
 F3 Up::Click up
-$!F2::Send {Alt down}{LButton}{Alt up}
-$^F2::
+$!F3::Send {Alt down}{LButton}{Alt up}
+$^F3::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
         Send {MButton}
         return
@@ -152,7 +149,8 @@ $^F2::
 F4::Send {RButton}
 +F10::Send {AppsKey}
 ^!a::
-    exe_path := "C:\Program Files\Sublime Text 3\sublime_text.exe"
+    ; exe_path := "C:\Program Files\Sublime Text 3\sublime_text.exe"
+    exe_path := "C:\Program Files\Sublime Text\sublime_text.exe"
     file_path := "./keyflow.ahk"
     RunWait %exe_path% %file_path%
     WinActivate, ahk_class PX_WINDOW_CLASS
