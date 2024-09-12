@@ -1,6 +1,6 @@
 #SingleInstance Force
 SetWorkingDir %A_ScriptDir%
-; SendMode Input
+SendMode Input
 
 ; #Include sf/sf.ahk
 
@@ -32,15 +32,34 @@ return
 
 
 #IfWinActive ahk_exe eldenring.exe
-WheelUp::Return
-WheelDown::Return
-`;::
-if (GetKeyState("LButton" , "P")=0)
-    Click down
-return
-`; Up::Click up
-,::LShift
-; g::b
+$enter::e
+; $e::Numpad8
+; $d::Numpad5
+; $s::Numpad4
+; $f::Numpad6
+m::g
+<!i::Send {Up}
+<!k::Send {Down}
+<!j::Send {Left}
+<!l::Send {Right}
+g::Numpad9
+F5::u
+F6::Lshift
+F7::o
+F8::p
+numpad1::WheelUp
+numpad3::WheelDown
+; 8::Send {WheelUp 2}
+; 9::Send {WheelDown 2}
+`;::Numpad7
+RShift::LShift
+; WheelUp::Return
+; WheelDown::Return
+; `;::
+; if (GetKeyState("LButton" , "P")=0)
+;     Click down
+; return
+; `; Up::Click up
 
 #IfWinActive ahk_class UnityWndClass ; Duel Links
 ; ~Space & j::MouseClick, left, 570, 540
@@ -122,20 +141,22 @@ return
 ; <^8::Send {WheelUp 2}
 ; <^9::Send {WheelDown 2}
 F3::
-    if WinActive("ahk_class MainWindow") {  ; autoclick
-        Loop {
-            Click
-            if (GetKeyState("LButton", "P")=0)
-                break
-            sleep 10
-        }
-    }
-    else {
-        if (GetKeyState("LButton" , "P")=0)
-            Click down
-        return
-    }
+    ; if WinActive("ahk_class MainWindow") {  ; autoclick
+    ;     Loop {
+    ;         Click
+    ;         if (GetKeyState("LButton", "P")=0)
+    ;             break
+    ;         sleep 10
+    ;     }
+    ; }
+    ; else {
+    if (not GetKeyState("LButton" , "P"))
+        Click down
+    return
+    ; }
 F3 Up::Click up
+; F3::Send {Click down}
+; F3 up:Send {Click up}
 $!F3::Send {Alt down}{LButton}{Alt up}
 $^F3::
     if WinActive("ahk_class Chrome_WidgetWin_1") {
